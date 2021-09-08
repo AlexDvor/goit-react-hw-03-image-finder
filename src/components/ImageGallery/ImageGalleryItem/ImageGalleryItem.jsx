@@ -1,7 +1,7 @@
-function ImageGalleryItem() {
+function ImageGalleryItem({ webImage }) {
   return (
     <li className="ImageGalleryItem">
-      <img src="" alt="" className="ImageGalleryItem-image" />
+      <img src={webImage} alt="" className="ImageGalleryItem-image" />
     </li>
   );
 }

@@ -15,8 +15,8 @@ export class Searchbar extends Component {
   handleSubmitForm = e => {
     e.preventDefault();
     if (this.state.name !== '') {
-      const nameImage = this.state.name;
-      this.props.onSubmit(nameImage);
+      const queryValue = this.state.name;
+      this.props.onSubmit(queryValue);
 
       //   this.resetForm();
     }

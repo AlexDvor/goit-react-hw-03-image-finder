@@ -1,9 +1,11 @@
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 
-function ImageGallery() {
+function ImageGallery({ images }) {
   return (
     <ul className="ImageGallery">
-      <ImageGalleryItem></ImageGalleryItem>
+      {images.map(item => (
+        <ImageGalleryItem key={item.id} webImage={item.webformatURL} />
+      ))}
     </ul>
   );
 }

@@ -5,11 +5,15 @@ function fetchImages(nameImg) {
   return fetch(
     `${URL}/?q=${nameImg}&page=1&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12`,
   ).then(response => {
-    if (!response.ok) {
-      throw new Error(response.status);
+    if (response.ok) {
+      return response.json();
     }
-    return response.json();
+    return Promise.reject(new Error(`Мы не нашли такой картинки по имени ${nameImg}`));
   });
 }
 
-export default fetchImages;
+const Api = {
+  fetchImages,
+};
+
+export default Api;

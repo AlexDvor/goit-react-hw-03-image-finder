@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import ImageGallery from './components/ImageGallery/ImageGallery';
 
 // Components
 // import fetchImages from './utils/fetchImage';
@@ -17,6 +18,7 @@ class App extends Component {
     return (
       <>
         <Searchbar onSubmit={this.getFormName}></Searchbar>
+        <ImageGallery></ImageGallery>
       </>
     );
   }

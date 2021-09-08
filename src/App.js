@@ -10,13 +10,16 @@ class App extends Component {
   state = {
     queryName: '',
     images: [],
+    page: 1,
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.queryName !== this.state.queryName) {
       // console.log('Api.fetchImages(this.state.queryName):', Api.fetchImages(this.state.queryName));
 
-      Api.fetchImages(this.state.queryName).then(res => this.setState({ images: res.hits }));
+      Api.fetchImages(this.state.queryName, this.state.page).then(res =>
+        this.setState({ images: res.hits }),
+      );
     }
   }
 

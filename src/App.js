@@ -14,15 +14,19 @@ class App extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
+    const DEFAULT_PAGE = 1;
     const { queryName, page } = this.state;
+
     if (prevState.queryName !== queryName) {
-      Api.fetchImages(queryName, page).then(res => this.setState({ images: res.hits }));
+      Api.fetchImages(queryName, DEFAULT_PAGE).then(res => this.setState({ images: res.hits }));
     }
 
     if (prevState.page !== page) {
-      Api.fetchImages(queryName, page).then(res =>
-        this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })),
-      );
+      if (page !== DEFAULT_PAGE) {
+        Api.fetchImages(queryName, page).then(res =>
+          this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })),
+        );
+      }
     }
 
     if (prevState.queryName !== queryName) {
@@ -44,6 +48,7 @@ class App extends Component {
 
   resetPage() {
     this.setState({
+      images: [],
       page: 1,
     });
   }
@@ -56,6 +61,7 @@ class App extends Component {
 
   render() {
     // console.log('render:', this.state.images);
+
     return (
       <>
         <Searchbar onSubmit={this.getQueryValue}></Searchbar>

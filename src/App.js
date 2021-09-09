@@ -24,6 +24,12 @@ class App extends Component {
         this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })),
       );
     }
+
+    if (prevState.queryName !== queryName) {
+      this.setState({
+        page: 1,
+      });
+    }
   }
 
   getQueryValue = name => {

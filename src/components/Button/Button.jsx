@@ -1,9 +1,9 @@
 import { Button } from './Button.styled';
 
-function LoadMoreButton() {
+function LoadMoreButton({ click }) {
   return (
     <>
-      <Button>Load More</Button>
+      <Button onClick={click}>Load More</Button>
     </>
   );
 }

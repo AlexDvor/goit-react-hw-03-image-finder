@@ -3,8 +3,8 @@ import ImageGallery from './components/ImageGallery/ImageGallery';
 import Api from './utils/fetchImage';
 
 // Components
-// import fetchImages from './utils/fetchImage';
 import { Searchbar } from './components/Searchbar/Searchbar';
+import LoadMoreButton from './components/Button/Button';
 
 class App extends Component {
   state = {
@@ -35,6 +35,7 @@ class App extends Component {
       <>
         <Searchbar onSubmit={this.getQueryValue}></Searchbar>
         <ImageGallery images={this.state.images}></ImageGallery>
+        {this.state.images.length > 0 && <LoadMoreButton />}
       </>
     );
   }

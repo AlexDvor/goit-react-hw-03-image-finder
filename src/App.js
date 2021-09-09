@@ -26,9 +26,7 @@ class App extends Component {
     }
 
     if (prevState.queryName !== queryName) {
-      this.setState({
-        page: 1,
-      });
+      this.resetPage();
     }
   }
 
@@ -38,15 +36,15 @@ class App extends Component {
     });
   };
 
-  incrementPage() {
-    this.setState(prevState => ({
-      page: prevState.page + 1,
-    }));
-  }
+  // incrementPage() {
+  //   this.setState(prevState => ({
+  //     page: prevState.page + 1,
+  //   }));
+  // }
 
   resetPage() {
     this.setState({
-      name: 1,
+      page: 1,
     });
   }
 
@@ -57,7 +55,7 @@ class App extends Component {
   };
 
   render() {
-    console.log('render:', this.state.images);
+    // console.log('render:', this.state.images);
     return (
       <>
         <Searchbar onSubmit={this.getQueryValue}></Searchbar>

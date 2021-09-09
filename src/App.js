@@ -26,9 +26,6 @@ class App extends Component {
     }
   }
 
-  // this.setState((prevState) => ({
-  //           contacts: [newData, ...prevState.contacts],
-
   getQueryValue = name => {
     this.setState({
       queryName: name,

@@ -51,8 +51,6 @@ class App extends Component {
     this.setState(prevState => ({
       page: prevState.page + 1,
     }));
-
-    console.log(this.state.page);
   };
 
   render() {
@@ -61,7 +59,7 @@ class App extends Component {
       <>
         <Searchbar onSubmit={this.getQueryValue}></Searchbar>
         <ImageGallery images={this.state.images}></ImageGallery>
-        {this.state.images.length > 0 && <LoadMoreButton click={this.clickMoreBtn} />}
+        {this.state.images.length > 0 && <LoadMoreButton onClick={this.clickMoreBtn} />}
       </>
     );
   }

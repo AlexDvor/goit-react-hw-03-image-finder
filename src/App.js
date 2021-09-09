@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import Api from './utils/fetchImage';
+import { scroll } from './utils/scroll';
 
 // Components
 import { Searchbar } from './components/Searchbar/Searchbar';
@@ -23,20 +24,15 @@ class App extends Component {
 
     if (prevState.page !== page) {
       if (page !== DEFAULT_PAGE) {
-        Api.fetchImages(queryName, page).then(res =>
-          this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })),
-        );
+        Api.fetchImages(queryName, page)
+          .then(res => this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })))
+          .finally(scroll);
       }
     }
 
     if (prevState.queryName !== queryName) {
       this.resetPage();
     }
-
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: 'smooth',
-    });
   }
 
   getQueryValue = name => {
@@ -44,12 +40,6 @@ class App extends Component {
       queryName: name,
     });
   };
-
-  // incrementPage() {
-  //   this.setState(prevState => ({
-  //     page: prevState.page + 1,
-  //   }));
-  // }
 
   resetPage() {
     this.setState({

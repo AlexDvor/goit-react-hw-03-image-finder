@@ -32,6 +32,11 @@ class App extends Component {
     if (prevState.queryName !== queryName) {
       this.resetPage();
     }
+
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
   }
 
   getQueryValue = name => {

@@ -19,12 +19,6 @@ class App extends Component {
       Api.fetchImages(queryName, page).then(res => this.setState({ images: res.hits }));
     }
 
-    // if (prevState.page !== page) {
-    //   Api.fetchImages(queryName, page).then(res =>
-    //     this.setState(prevState => ({ images: [res.hits, ...prevState.images] })),
-    //   );
-    // }
-
     if (prevState.page !== page) {
       Api.fetchImages(queryName, page).then(res =>
         this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })),

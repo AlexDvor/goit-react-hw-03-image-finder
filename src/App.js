@@ -24,6 +24,7 @@ class App extends Component {
 
     if (prevState.queryName !== queryName) {
       this.setState({ loading: true });
+
       Api.fetchImages(queryName, DEFAULT_PAGE)
         .then(res => this.setState({ images: res.hits }))
         .finally(() => this.setState({ loading: false }));
@@ -32,14 +33,11 @@ class App extends Component {
     if (prevState.page !== page) {
       if (page !== DEFAULT_PAGE) {
         this.setState({ loading: true });
-        setTimeout(() => {
-          Api.fetchImages(queryName, page)
-            .then(res =>
-              this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })),
-            )
-            .then(scroll)
-            .finally(() => this.setState({ loading: false }));
-        }, 2000);
+
+        Api.fetchImages(queryName, page)
+          .then(res => this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })))
+          .then(scroll)
+          .finally(() => this.setState({ loading: false }));
       }
     }
 

@@ -1,11 +1,12 @@
 import { Component } from 'react';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import Api from './utils/fetchImage';
-import { scroll } from './utils/scroll';
 // Components
 import { Searchbar } from './components/Searchbar/Searchbar';
 import LoadMoreButton from './components/Button/Button';
+// utils
 import Spinner from './components/Loader/Loader';
+import { scroll } from './utils/scroll';
 
 class App extends Component {
   state = {
@@ -61,14 +62,14 @@ class App extends Component {
   };
 
   render() {
-    // console.log('render:', this.state.images);
-
+    const { loading, images } = this.state;
+    const { clickMoreBtn } = this;
     return (
       <>
         <Searchbar onSubmit={this.getQueryValue}></Searchbar>
-        {this.state.loading && <Spinner />}
+        {loading && <Spinner />}
         <ImageGallery images={this.state.images}></ImageGallery>
-        {this.state.images.length > 0 && <LoadMoreButton onClick={this.clickMoreBtn} />}
+        {images.length > 0 && <LoadMoreButton onClick={clickMoreBtn} />}
       </>
     );
   }

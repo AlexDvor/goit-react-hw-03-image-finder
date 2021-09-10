@@ -90,7 +90,7 @@ class App extends Component {
 
         <ImageGallery images={images} selectImg={handleSelectImg} />
 
-        {images.length > 0 && <LoadMoreButton onClick={clickMoreBtn} />}
+        {images.length > 0 && !loading && <LoadMoreButton onClick={clickMoreBtn} />}
 
         {selectImage && (
           <Modal onClose={this.closeModal}>

@@ -1,6 +1,6 @@
-function ImageGalleryItem({ webImage }) {
+function ImageGalleryItem({ webImage, onSelect, largeUrl }) {
   return (
-    <li className="ImageGalleryItem">
+    <li className="ImageGalleryItem" onClick={() => onSelect(largeUrl)}>
       <img src={webImage} alt="" className="ImageGalleryItem-image" />
     </li>
   );

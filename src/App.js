@@ -16,6 +16,7 @@ class App extends Component {
     page: 1,
     loading: false,
     showModal: false,
+    selectImage: null,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -63,24 +64,40 @@ class App extends Component {
     }));
   };
 
-  toggleModal = () => {
-    this.setState(prevState => ({
-      showModal: !prevState.showModal,
-    }));
+  // toggleModal = () => {
+  //   this.setState(prevState => ({
+  //     showModal: !prevState.showModal,
+  //   }));
+  // };
+
+  closeModal = () => {
+    this.setState({
+      selectImage: null,
+    });
+  };
+
+  handleSelectImg = url => {
+    this.setState({
+      selectImage: url,
+    });
   };
 
   render() {
-    const { loading, images, showModal } = this.state;
-    const { clickMoreBtn, toggleModal } = this;
+    const { loading, images, selectImage } = this.state;
+    const { clickMoreBtn, getQueryValue } = this;
     return (
       <>
-        <Searchbar onSubmit={this.getQueryValue}></Searchbar>
+        <Searchbar onSubmit={getQueryValue}></Searchbar>
+
         {loading && <Spinner />}
-        <ImageGallery images={this.state.images}></ImageGallery>
+
+        <ImageGallery images={this.state.images} selectImg={this.handleSelectImg}></ImageGallery>
+
         {images.length > 0 && <LoadMoreButton onClick={clickMoreBtn} />}
-        {showModal && (
-          <Modal onClose={toggleModal}>
-            <img src="" alt="" />
+
+        {selectImage && (
+          <Modal onClose={this.closeModal}>
+            <img src={this.state.selectImage} alt="" />
           </Modal>
         )}
       </>

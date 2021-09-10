@@ -7,6 +7,7 @@ import LoadMoreButton from './components/Button/Button';
 // utils
 import Spinner from './components/Loader/Loader';
 import { scroll } from './utils/scroll';
+import Modal from './components/Modal/Modal';
 
 class App extends Component {
   state = {
@@ -14,6 +15,7 @@ class App extends Component {
     images: [],
     page: 1,
     loading: false,
+    showModal: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -62,7 +64,7 @@ class App extends Component {
   };
 
   render() {
-    const { loading, images } = this.state;
+    const { loading, images, showModal } = this.state;
     const { clickMoreBtn } = this;
     return (
       <>
@@ -70,6 +72,11 @@ class App extends Component {
         {loading && <Spinner />}
         <ImageGallery images={this.state.images}></ImageGallery>
         {images.length > 0 && <LoadMoreButton onClick={clickMoreBtn} />}
+        {showModal && (
+          <Modal>
+            <img src="" alt="" />
+          </Modal>
+        )}
       </>
     );
   }

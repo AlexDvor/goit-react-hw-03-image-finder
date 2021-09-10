@@ -7,6 +7,7 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(4 4 4 / 59%);
+  z-index: 10;
 
   opacity: 1;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),

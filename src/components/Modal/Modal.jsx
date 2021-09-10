@@ -5,15 +5,33 @@ import { createPortal } from 'react-dom';
 const modalRoot = document.querySelector('#modal-root');
 
 class Modal extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
 
-  componentDidUpdate(prevProps, prevState) {}
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      this.props.onClose();
+    }
+  };
+
+  handleBackDropClick = e => {
+    if (e.currentTarget === e.target) {
+      this.props.onClose();
+    }
+  };
 
   render() {
+    const { children } = this.props;
+    const { handleBackDropClick } = this;
     return createPortal(
       <>
-        <Overlay>
-          <ContentModal>{this.props.children}</ContentModal>
+        <Overlay onClick={handleBackDropClick}>
+          <ContentModal>{children}</ContentModal>
         </Overlay>
       </>,
       modalRoot,

@@ -63,9 +63,15 @@ class App extends Component {
     }));
   };
 
+  toggleModal = () => {
+    this.setState(prevState => ({
+      showModal: !prevState.showModal,
+    }));
+  };
+
   render() {
     const { loading, images, showModal } = this.state;
-    const { clickMoreBtn } = this;
+    const { clickMoreBtn, toggleModal } = this;
     return (
       <>
         <Searchbar onSubmit={this.getQueryValue}></Searchbar>
@@ -73,7 +79,7 @@ class App extends Component {
         <ImageGallery images={this.state.images}></ImageGallery>
         {images.length > 0 && <LoadMoreButton onClick={clickMoreBtn} />}
         {showModal && (
-          <Modal>
+          <Modal onClose={toggleModal}>
             <img src="" alt="" />
           </Modal>
         )}

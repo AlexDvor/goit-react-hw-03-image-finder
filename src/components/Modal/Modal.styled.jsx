@@ -17,12 +17,12 @@ export const ContentModal = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  max-width: 450px;
+  max-width: 1200px;
   max-height: 100vh;
   width: 100%;
-  padding: 40px;
+  /* padding: 40px; */
   background-color: #ffffff;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 
   transform: translate(-50%, -50%) scale(1);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);

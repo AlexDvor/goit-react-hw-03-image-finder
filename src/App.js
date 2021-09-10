@@ -2,11 +2,10 @@ import { Component } from 'react';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import Api from './utils/fetchImage';
 import { scroll } from './utils/scroll';
-import Loader from 'react-loader-spinner';
-
 // Components
 import { Searchbar } from './components/Searchbar/Searchbar';
 import LoadMoreButton from './components/Button/Button';
+import Spinner from './components/Loader/Loader';
 
 class App extends Component {
   state = {
@@ -32,8 +31,8 @@ class App extends Component {
         this.setState({ loading: true });
         Api.fetchImages(queryName, page)
           .then(res => this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })))
-          .then(() => this.setState({ loading: false }))
-          .finally(scroll);
+          .then(scroll)
+          .finally(() => this.setState({ loading: false }));
       }
     }
 
@@ -67,16 +66,8 @@ class App extends Component {
     return (
       <>
         <Searchbar onSubmit={this.getQueryValue}></Searchbar>
+        {this.state.loading && <Spinner />}
         <ImageGallery images={this.state.images}></ImageGallery>
-        {this.state.loading && (
-          <Loader
-            type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
-            timeout={3000} //3 secs
-          />
-        )}
         {this.state.images.length > 0 && <LoadMoreButton onClick={this.clickMoreBtn} />}
       </>
     );

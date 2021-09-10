@@ -17,16 +17,8 @@ export class Searchbar extends Component {
     if (this.state.name !== '') {
       const queryValue = this.state.name;
       this.props.onSubmit(queryValue);
-
-      //   this.resetForm();
     }
   };
-
-  resetForm() {
-    this.setState({
-      name: '',
-    });
-  }
 
   render() {
     const { handleChange, handleSubmitForm } = this;

@@ -36,7 +36,7 @@ class App extends Component {
 
         Api.fetchImages(queryName, page)
           .then(res => this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })))
-          .then(scroll)
+          .then(() => scroll())
           .finally(() => this.setState({ loading: false }));
       }
     }

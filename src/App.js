@@ -32,10 +32,14 @@ class App extends Component {
     if (prevState.page !== page) {
       if (page !== DEFAULT_PAGE) {
         this.setState({ loading: true });
-        Api.fetchImages(queryName, page)
-          .then(res => this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })))
-          .then(scroll)
-          .finally(() => this.setState({ loading: false }));
+        setTimeout(() => {
+          Api.fetchImages(queryName, page)
+            .then(res =>
+              this.setState(prevState => ({ images: [...prevState.images, ...res.hits] })),
+            )
+            .then(scroll)
+            .finally(() => this.setState({ loading: false }));
+        }, 2000);
       }
     }
 
